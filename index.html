@@ -18,6 +18,7 @@
         physics: {
             default: 'arcade',
             arcade: {
+                // den hjälper att håppa upp
                 gravity: { y: 300 },
                 debug: false
             }
@@ -61,8 +62,11 @@
       platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
       platforms.create(600, 400, 'ground');
-      platforms.create(50, 250, 'ground');
-      platforms.create(750, 220, 'ground');
+      platforms.create(10, 150, 'ground');
+      platforms.create(50, 320, 'ground');
+      platforms.create(850, 100, 'ground');
+
+      platforms.create(750, 280, 'ground');
       
       player = this.physics.add.sprite(100, 450, 'dude');
 
@@ -112,6 +116,10 @@
       this.physics.add.collider(player, platforms);
       this.physics.add.collider(stars, platforms);
       this.physics.add.collider(bombs, platforms);
+      this.physics.add.collider(bombs, platforms);
+      
+      
+
 
       //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
       this.physics.add.overlap(player, stars, collectStar, null, this);
@@ -168,7 +176,7 @@
 
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
-        var bomb = bombs.create(x, 16, 'bomb');
+        var bomb = bombs.create(x, 55, 'bomb');
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -180,7 +188,7 @@
   {
       this.physics.pause();
 
-      player.setTint(0xff0000);
+      player.setTint(0x0000ff);
 
       player.anims.play('turn');
 
